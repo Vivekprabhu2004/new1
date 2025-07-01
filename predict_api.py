@@ -4,6 +4,10 @@ from sklearn.linear_model import LogisticRegression
 app = Flask(__name__)
 X,y = load_iris(return_X_y = True)
 model = LogisticRegression(max_iter=200).fit(X,y)
+@app.route('/')
+def home():
+    return "<h2>🚀 ML Inference API is running! Use the /predict endpoint to get predictions.</h2>"
+
 @app.route('/predict', methods=['POST'])
 def predict():
     data = request.json['features']
